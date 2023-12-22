@@ -31,6 +31,7 @@ h1, h2, h3, p {
 .row {
     display: flex;
     align-items: center;
+    flex-direction: column; /* Change to column direction */
     justify-content: center;
     margin: 10px 0;
 }
