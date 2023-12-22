@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration Form</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class='form'>
+        <form id="registrationForm" onsubmit="return validateForm();">
+            <h1> Registration</h1>
+            <p class='details'>Please fill up your details </p>
+            <div class='row'>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Name" required>
+                <span id="nameError" class="error"></span>
+            </div>
+            <div class='row'>
+                <label for="birthday">Birthday:</label>
+                <!-- Allow users to manually enter day, month, and year as numbers -->
+                <input type="number" id="day" name="day" placeholder="DD" min="1" max="31" required>
+                <input type="number" id="month" name="month" placeholder="MM" min="1" max="12" required>
+                <input type="number" id="year" name="year" placeholder="YYYY" min="1920" max="2023" required>
+                <span id="birthdayError" class="error"></span>
+            </div>
+            <div class='row'>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Email Address">
+                <span id="emailError" class="error"></span>
+            </div>
+            <div class='row'>
+                <input type="checkbox" id="noEmail" name="noEmail"> No Email Address
+            </div>
+
+            <button type="button" class='button-org' onclick="submitForm()">Continue</button>
+            <div id="errorMessages" class="error"></div>
+        </form>
+    </div>
+    <div class='footer'>
+        <p>Powered by <span style="color: blue; font-weight: bold;">MulahRewards.com</span></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var nameInput = document.getElementById('name');
+            var birthdayDayInput = document.getElementById('day');
+            var birthdayMonthInput = document.getElementById('month');
+            var birthdayYearInput = document.getElementById('year');
+            var emailInput = document.getElementById('email');
+
+            var nameError = document.getElementById('nameError');
+            var birthdayError = document.getElementById('birthdayError');
+            var emailError = document.getElementById('emailError');
+            var errorMessages = document.getElementById('errorMessages');
+
+            // Reset error messages
+            nameError.innerHTML = '';
+            birthdayError.innerHTML = '';
+            emailError.innerHTML = '';
+            errorMessages.innerHTML = '';
+
+            // Check for each input
+            if (!nameInput.value) {
+                nameError.innerHTML = 'Please insert your name';
+            }
+
+            if (!birthdayDayInput.value || !birthdayMonthInput.value || !birthdayYearInput.value) {
+                birthdayError.innerHTML = 'Please insert your complete birthday';
+            }
+
+            if (!emailInput.value && !document.getElementById('noEmail').checked) {
+                emailError.innerHTML = 'Please insert your email or check "No Email Address"';
+            }
+
+            // Collect all error messages
+            var allErrors = [nameError.innerHTML, birthdayError.innerHTML, emailError.innerHTML];
+            allErrors = allErrors.filter(Boolean); // Remove empty messages
+
+            // If there are any error messages, prevent form submission
+            return allErrors.length === 0;
+        }
+
+        function submitForm() {
+            if (validateForm()) {
+                // Get form input values
+                var name = document.getElementById('name').value;
+                var day = document.getElementById('day').value;
+                var month = document.getElementById('month').value;
+                var year = document.getElementById('year').value;
+                var email = document.getElementById('email').value;
+                var noEmail = document.getElementById('noEmail').checked;
+
+                // Construct the URL with parameters
+                var url = 'dashboard.html?name=' + encodeURIComponent(name) +
+                          '&day=' + encodeURIComponent(day) +
+                          '&month=' + encodeURIComponent(month) +
+                          '&year=' + encodeURIComponent(year) +
+                          '&email=' + encodeURIComponent(email) +
+                          '&noEmail=' + noEmail;
+
+                // Redirect to dashboard.html
+                window.location.href = url;
+            }
+        }
+    </script>
+</body>
+</html>
