@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard!</h1>
+
+    <script>
+        // Function to retrieve URL parameters by name
+        function getParameterByName(name) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Retrieve parameters from the URL
+        var name = getParameterByName('name');
+        var day = getParameterByName('day');
+        var month = getParameterByName('month');
+        var year = getParameterByName('year');
+        var email = getParameterByName('email');
+        var noEmail = getParameterByName('noEmail');
+
+        // Display the data on the page
+        document.write('<h2>Name: ' + name + '</h2>');
+        document.write('<h2>Birthday: ' + day + '/' + month + '/' + year + '</h2>');
+        document.write('<h2>Email: ' + (noEmail === 'true' ? 'No Email Provided' : email) + '</h2>');
+    </script>
+</body>
+</html>

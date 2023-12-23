@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://kit.fontawesome.com/ec28471040.js" crossorigin="anonymous"></script>
+    <title>Your Mobile-Optimized Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <h1>Mulah</h1>
+    <h2>Hello, Welcome!</h2>
+    <h3>Check your Loyalty Points & Rewards</h3>
+    <div class='form'>
+        <form action="registration.html" method="get" onsubmit="return validateForm()">
+            <div class='row'>
+                <select id="country" name="country">
+                    <option value="+60">+60</option>
+                    <!-- Add more country options as needed -->
+                </select>
+                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter your mobile number" required>
+                <i id="checkIcon" class="fa fa-check-circle" aria-hidden="true"></i>
+            </div>
+            
+            <button class='button-org' type="submit">Check Loyalty Point</button>
+        </form>
+    </div>
+    <div class='footer'>
+        <p>Powered by <span style="color: blue; font-weight: bold;">MulahRewards.com</span></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            var countrycode = document.getElementById('country').value;
+            var mobileNumberInput = document.getElementById('mobileNumber').value;
+            var mobileNumWhole = countrycode + mobileNumberInput;
+            var checkIcon = document.getElementById('checkIcon');
+            var mobileNumberRegex = /^\+60173527250$/;
+
+            console.log(mobileNumWhole);
+
+            if (mobileNumberRegex.test(mobileNumWhole)) {
+                checkIcon.style.color = '#4CAF50'; // Green color
+                return true; // Allow the form to be submitted
+            } else {
+                checkIcon.style.color = '#FF0000'; // Red color
+                alert('Invalid mobile number.');
+                return false; // Prevent the form from being submitted
+            }
+        }
+    </script>
+
+</body>
+</html>
