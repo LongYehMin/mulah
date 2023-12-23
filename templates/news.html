@@ -1,0 +1,21 @@
+<html>
+    <div>
+        <table class="headline-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Headline</th>
+            </thead>
+            <tbody>
+                {% for headline in headlines %}
+                    <tr class="headline">
+                        <td class="time">{{ headline.date_time }}</td>
+                        <td class="headline-content">
+                            <a href="{{ headline.link }}" target="_blank">{{ headline.headline }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</html>
